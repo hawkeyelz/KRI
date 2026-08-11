@@ -9,7 +9,7 @@ def load_classifier():
         print(f"Error: Model directory '{MODEL_DIR}' not found.")
         print("Please run 'python download_models.py' first.")
         sys.exit(1)
-        
+
     return pipeline(
         "text-classification",
         model=MODEL_DIR,
@@ -22,7 +22,7 @@ def parse_text(text: str, classifier):
     # Split text by standard sentence delimiters
     import re
     sentences = re.split(r'(?<=[.!?]) +', text)
-    
+
     results = []
     for sentence in sentences:
         if not sentence.strip():
@@ -37,10 +37,10 @@ def parse_text(text: str, classifier):
 
 if __name__ == "__main__":
     classifier = load_classifier()
-    
-    sample_input = "Come on god damn it! I'm sorry. We really need to leave."
+
+    sample_input = "Come on god damn it! I'm sorry. We really need to leave, right now! Get your shit and let go before we get caught."
     parsed = parse_text(sample_input, classifier)
-    
+
     print("\nParsed Output:")
     import json
     print(json.dumps(parsed, indent=2))
